@@ -3,4 +3,3 @@ roles:
   - robertdebock.core_dependencies
   - robertdebock.bootstrap
   - robertdebock.dnsmasq
-  - maxhoesel.caddy
