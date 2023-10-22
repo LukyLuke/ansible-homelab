@@ -1,5 +1,5 @@
 ---
-collections:
+role:
   - robertdebock.bootstrap
   - robertdebock.core_dependencies
   - robertdebock.dnsmasq
