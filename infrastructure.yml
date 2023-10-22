@@ -20,6 +20,7 @@
   gather_facts: true
   roles:
     - role: maxhoesel.caddy.caddy_server
+      caddy_config_mode: Caddyfile
       caddy_caddyfile: |
         {
           email caddy-homelab@ranta.ch
