@@ -8,9 +8,6 @@ dnsmasq_servers:
   - domain: local
     nameserver: "192.168.88.7"
 
-dnsmasq_locals:
-  - domain: local
-
 dnsmasq_addresses:
   - domain: cloud.ranta.ch
     address: "192.168.88.7"
