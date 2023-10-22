@@ -1,5 +1,6 @@
 ---
-- robertdebock.bootstrap
-- robertdebock.core_dependencies
-- robertdebock.dnsmasq
-- maxhoesel.caddy
+collections:
+  - robertdebock.bootstrap
+  - robertdebock.core_dependencies
+  - robertdebock.dnsmasq
+  - maxhoesel.caddy
