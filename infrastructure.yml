@@ -12,7 +12,7 @@
   become: true
   gather_facts: true
   roles:
-    - role: dns
+    - role: robertdebock.dnsmasq
 
 - name: Caddy Web-Proxy
   hosts: dns
