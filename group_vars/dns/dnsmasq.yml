@@ -3,6 +3,7 @@
 dnsmasq_expand_hosts: true
 dnsmasq_domains:
   - domain: ranta.local
+    name: ranta.local
 
 dnsmasq_servers:
   - domain: local
