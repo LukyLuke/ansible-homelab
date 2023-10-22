@@ -1,0 +1,44 @@
+---
+
+- name: Bootstrap all Hosts
+  hosts: all
+  become: true
+  gather_facts: false
+  roles:
+    - role: robertdebock.bootstrap
+
+- name: dnsmaq installation and configuration
+  hosts: dns
+  become: true
+  gather_facts: true
+  roles:
+    - role: dns
+
+- name: Caddy Web-Proxy
+  hosts: dns
+  become: true
+  gather_facts: true
+  roles:
+    - role: maxhoesel.caddy.caddy_server
+      caddy_caddyfile: |
+        {
+          email caddy-homelab@ranta.ch
+        }
+        lab.ranta.local {
+          reverse_proxy 192.168.88.6:3000 {
+            header_down Strict-Transport-Security "max-age=31536000; includeSubdomains;"
+            header_down Content-Security-Policy "default-src 'self' data: https: 'unsafe-inline'"
+          }
+        }
+        ansible.ranta.local {
+          reverse_proxy 192.168.88.5:8006 {
+            header_down Strict-Transport-Security "max-age=31536000; includeSubdomains;"
+            header_down Content-Security-Policy "default-src 'self' data: https: 'unsafe-inline'"
+          }
+        }
+        cloud.ranta.ch {
+          reverse_proxy 192.168.88.10:80 {
+            header_down Strict-Transport-Security "max-age=31536000; includeSubdomains;"
+          }
+        }
+

@@ -1,0 +1,21 @@
+---
+
+dnsmasq_expand_hosts: true
+dnsmasq_domains:
+  - domain: ranta.local
+
+dnsmasq_servers:
+  - domain: local
+    nameserver: "192.168.88.7"
+
+dnsmasq_locals:
+  - domain: local
+
+dnsmasq_addresses:
+  - domain: cloud.ranta.ch
+    address: "192.168.88.7"
+  - domain: lab.ranta.local
+    address: "192.168.88.7"
+  - domain: ansible.ranta.local
+    address: "192.168.88.7"
+
