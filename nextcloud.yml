@@ -11,7 +11,8 @@
   hosts: all
   become: true
   gather_facts: false
-  vars_file: group_vars/cloud/nextcloud.yml
+  vars_files:
+    - group_vars/cloud/nextcloud.yml
   tasks:
     - name: Install Packages
       ansible.builtin.apt:
@@ -55,7 +56,8 @@
   hosts: all
   become: true
   gather_facts: false
-  vars_file: group_vars/cloud/nextcloud.yml
+  vars_files:
+    - group_vars/cloud/nextcloud.yml
   tasks:
     - name: Configure Apache2
       ansible.builtin.template:
