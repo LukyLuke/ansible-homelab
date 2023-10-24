@@ -61,6 +61,14 @@
         src: templates/cloud/cloud.conf.j2
         dest: /etc/apache2/sites-available/nextcloud.conf
 
+    - name: Ensure Nextcloud Directory exists
+      ansible.builtin.file:
+        path: '{{ nextcloud_directory }}'
+        state: directory
+        mode: '0755'
+        owner: 'www-data'
+        group: 'www-data'
+
     - name: Enable Cloud in Apache2
       ansible.builtin.shell: /usr/sbin/a2ensite nextcloud.conf
       notify: Reload Apache2
