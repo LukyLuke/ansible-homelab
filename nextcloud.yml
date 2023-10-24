@@ -4,7 +4,6 @@
   hosts: all
   become: true
   gather_facts: false
-  include_vars: group_vars/cloud/nextcloud.yml
   roles:
     - role: robertdebock.bootstrap
 
@@ -12,7 +11,6 @@
   hosts: all
   become: true
   gather_facts: false
-  include_vars: group_vars/cloud/nextcloud.yml
   tasks:
     - name: Install Packages
       ansible.builtin.apt:
@@ -36,6 +34,7 @@
           - ffmpeg
 
     - name: Configure Apache2 http2
+      include_vars: group_vars/cloud/nextcloud.yml
       ansible.builtin.template:
         src: templates/cloud/http2.conf.j2
         dest: /etc/apache2/conf-available/http2.conf
@@ -56,9 +55,9 @@
   hosts: all
   become: true
   gather_facts: false
-  include_vars: group_vars/cloud/nextcloud.yml
   tasks:
     - name: Configure Apache2
+      include_vars: group_vars/cloud/nextcloud.yml
       ansible.builtin.template:
         src: templates/cloud/cloud.conf.j2
         dest: /etc/apache2/sites-available/nextcloud.conf
