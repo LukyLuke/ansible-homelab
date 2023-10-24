@@ -4,6 +4,7 @@
   hosts: all
   become: true
   gather_facts: false
+  include_vars: group_vars/cloud/nextcloud.yml
   roles:
     - role: robertdebock.bootstrap
 
@@ -11,7 +12,7 @@
   hosts: all
   become: true
   gather_facts: false
-  vars: group_vars/cloud/nextcloud.yml
+  include_vars: group_vars/cloud/nextcloud.yml
   tasks:
     - name: Install Packages
       ansible.builtin.apt:
@@ -55,7 +56,7 @@
   hosts: all
   become: true
   gather_facts: false
-  vars: group_vars/cloud/nextcloud.yml
+  include_vars: group_vars/cloud/nextcloud.yml
   tasks:
     - name: Configure Apache2
       ansible.builtin.template:
