@@ -1,0 +1,76 @@
+---
+
+- name: Bootstrap all Hosts
+  hosts: all
+  become: true
+  gather_facts: false
+  roles:
+    - role: robertdebock.bootstrap
+
+- name: Prepare for Nextcloud
+  hosts: all
+  become: true
+  gather_facts: false
+  tasks:
+    - name: Install Packages
+      apt:
+        state: latest
+        update_cache: true
+        pkgs:
+          - mariadb-server
+          - apache2
+          - php
+          - php-curl
+          - php-gd
+          - php-imagick
+          - php-fpm
+          - php-cli
+          - php-mbstring
+          - php-xml
+          - php-zip
+          - php-intl
+          - php-bz2
+          - php-mysql
+          - ffmpeg
+
+    - name: Configure Apache2 http2
+      template:
+        src: templates/cloud/http2.conf.j2
+        dest: /etc/apache2/conf-available/http2.conf
+
+    - name: Enable Apache2 Modules
+      shell:
+        - /usr/sbin/a2enmod http2
+        - /usr/sbin/a2enconf http2
+        - /usr/sbin/a2enmod env
+        - /usr/sbin/a2enmod rewrite
+        - /usr/sbin/a2enmod headers
+        - /usr/sbin/a2enmod dir
+        - /usr/sbin/a2enmod mime
+        - /usr/sbin/a2enmod ssl
+        - /usr/sbin/a2dismod webdav
+
+- name: Install and Configure Nextcloud
+  hosts: all
+  become: true
+  gather_facts: false
+  tasks:
+    - name: Configure Apache2
+      template:
+        src: templates/cloud/cloud.conf.j2
+        dest: /etc/apache2/sites-available/nextcloud.conf
+
+    - name: Enable Cloud in Apache2
+      shell: /usr/sbin/a2ensite nextcloud.conf
+      notify: Reload Apache2
+
+  handlers:
+    - name: Reload Apache2
+      service:
+        name: apache2
+        state: reloaded
+
+    - name: Restart Apache2
+      service:
+        name: apache2
+        state: restarted

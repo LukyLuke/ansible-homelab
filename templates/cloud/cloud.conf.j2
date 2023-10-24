@@ -1,0 +1,19 @@
+<VirtualHost *:80>
+	DocumentRoot {{ nextcloud_directory }}
+	ServerName {{ nextcloud_domain }}
+
+	{%if nextcloud_path and nextcloud_path != "/" %}
+	Alias {{ nextcloud_path }} "{{ nextcloud_directory }}/"
+	{%endif %}
+
+	<Directory {{ nextcloud_directory }}/>
+		Require all granted
+		AllowOverride All
+		Options FollowSymLinks MultiViews
+		Satisfy Any
+
+		<IfModule mod_dav.c>
+			Dav off
+		</IfModule>
+  </Directory>
+</VirtualHost>

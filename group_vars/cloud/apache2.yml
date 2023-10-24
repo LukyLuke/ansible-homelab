@@ -1,0 +1,4 @@
+---
+nextcloud_path: /
+nextcloud_directory: /var/www/nextcloud
+nextcloud_domain: cloud.ranta.ch
