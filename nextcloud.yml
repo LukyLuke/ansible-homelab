@@ -1,18 +1,16 @@
 ---
 
 - name: Bootstrap all Hosts
-  hosts: all
+  hosts: cloud
   become: true
   gather_facts: false
   roles:
     - role: robertdebock.bootstrap
 
 - name: Prepare for Nextcloud
-  hosts: all
+  hosts: cloud
   become: true
   gather_facts: false
-  vars_files:
-    - group_vars/cloud/nextcloud.yml
   tasks:
     - name: Install Packages
       ansible.builtin.apt:
@@ -53,11 +51,9 @@
         /usr/sbin/a2dismod webdav
 
 - name: Install and Configure Nextcloud
-  hosts: all
+  hosts: cloud
   become: true
   gather_facts: false
-  vars_files:
-    - group_vars/cloud/nextcloud.yml
   tasks:
     - name: Configure Apache2
       ansible.builtin.template:

@@ -1,7 +1,7 @@
 ---
 
 - name: Bootstrap all Hosts
-  hosts: all
+  hosts: dns
   become: true
   gather_facts: false
   roles:
