@@ -24,6 +24,9 @@
       caddy_caddyfile: |
         {
           email caddy-homelab@ranta.ch
+          servers {
+            metrics
+          }
         }
         lukylab.duckdns.org,
         lab.ranta.ch {
@@ -34,13 +37,14 @@
             </html>
             HTML 200
         }
-        lab.ranta.local {
-          tls internal
-          reverse_proxy http://192.168.88.5:8006 {
-            header_down Strict-Transport-Security "max-age=31536000; includeSubdomains;"
-            header_down Content-Security-Policy "default-src 'self' data: https: 'unsafe-inline'"
-          }
-        }
+        # No route from inside the PVE-Container to the PVE-Host
+        #lab.ranta.local {
+        #  tls internal
+        #  reverse_proxy https://192.168.88.5:8006 {
+        #    header_down Strict-Transport-Security "max-age=31536000; includeSubdomains;"
+        #    header_down Content-Security-Policy "default-src 'self' data: https: 'unsafe-inline'"
+        #  }
+        #}
         ansible.ranta.local {
           tls internal
           reverse_proxy http://192.168.88.6:3000 {
