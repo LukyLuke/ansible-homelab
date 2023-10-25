@@ -10,12 +10,23 @@ dnsmasq_servers:
     nameserver: "192.168.88.7"
 
 dnsmasq_addresses:
-  - domain: nas.ranta.local
-    address: "192.168.88.254"
-  - domain: cloud.ranta.ch
+  - domain: lukylab.duckdns.org
     address: "192.168.88.7"
-  - domain: lab.ranta.local
+  - domain: cloud.ranta.ch
     address: "192.168.88.7"
   - domain: ansible.ranta.local
     address: "192.168.88.7"
+
+  - domain: lab.ranta.local
+    address: "192.168.88.5"
+  - domain: vm.ansible.ranta.local
+    address: "192.168.88.6"
+  - domain: proxy.ranta.local
+    address: "192.168.88.7"
+  - domain: vm.cloud.ranta.ch
+    address: "192.168.88.10"
+  - domain: kali.ranta.local
+    address: "192.168.88.11"
+  - domain: nas.ranta.local
+    address: "192.168.88.254"
 
