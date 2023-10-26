@@ -71,7 +71,7 @@
         src: templates/cloud/nextcloud.service.j2
         dest: /lib/systemd/system/nextcloud.service
         mode: 0644
-        user: root
+        owner: root
         group: root
 
     - name: Configure Systemd Nextcloud-Cron Timer
@@ -79,7 +79,7 @@
         src: templates/cloud/nextcloud.timer.j2
         dest: /lib/systemd/system/nextcloud.timer
         mode: 0644
-        user: root
+        owner: root
         group: root
         notify: Enable NextcloudCron
 
