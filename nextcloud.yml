@@ -86,6 +86,7 @@
       ansible.builtin.service:
         name: nextcloud.timer
         enabled: true
+        status: started
 
     - name: Ensure Nextcloud Directory exists
       ansible.builtin.file:

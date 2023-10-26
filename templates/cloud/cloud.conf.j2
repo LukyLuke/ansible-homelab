@@ -6,6 +6,12 @@
 	Alias {{ nextcloud_path }} "{{ nextcloud_directory }}/"
 	{%endif %}
 
+	php_value memory_limit 1024M
+	php_value upload_max_filesize 4G
+	php_value post_max_size 4G
+	php_value max_input_time 3600
+	php_value max_execution_time 3600
+
 	<Directory {{ nextcloud_directory }}/>
 		Require all granted
 		AllowOverride All
