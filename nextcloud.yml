@@ -19,6 +19,9 @@
         pkg:
           - mariadb-server
           - apache2
+          - imagemagick
+          - graphviz
+          - curl
           - php
           - php-curl
           - php-gd
@@ -31,6 +34,8 @@
           - php-intl
           - php-bz2
           - php-mysql
+          - php-bcmath
+          - php-gmp
           - ffmpeg
 
     - name: Configure Apache2 http2
@@ -61,9 +66,39 @@
         src: templates/cloud/cloud.conf.j2
         dest: /etc/apache2/sites-available/nextcloud.conf
 
+    - name: Configure Systemd Nextcloud-Cron Service
+      ansible.builtin.template:
+        src: templates/cloud/nextcloud.service.j2
+        dest: /lib/systemd/system/nextcloud.service
+        mode: 0644
+        user: root
+        group: root
+
+    - name: Configure Systemd Nextcloud-Cron Timer
+      ansible.builtin.template:
+        src: templates/cloud/nextcloud.timer.j2
+        dest: /lib/systemd/system/nextcloud.timer
+        mode: 0644
+        user: root
+        group: root
+        notify: Enable NextcloudCron
+
+    - name: Enable Nextcloud-Cron Timer
+      ansible.builtin.service:
+        name: nextcloud.timer
+        enabled: true
+
     - name: Ensure Nextcloud Directory exists
       ansible.builtin.file:
         path: '{{ nextcloud_directory }}'
+        state: directory
+        mode: '0755'
+        owner: 'www-data'
+        group: 'www-data'
+
+    - name: Ensure Nextcloud Data-Directory exists
+      ansible.builtin.file:
+        path: '{{ nextcloud_data_directory }}'
         state: directory
         mode: '0755'
         owner: 'www-data'
@@ -75,11 +110,11 @@
 
   handlers:
     - name: Reload Apache2
-      service:
+      ansible.builtin.service:
         name: apache2
         state: reloaded
 
     - name: Restart Apache2
-      service:
+      ansible.builtin.service:
         name: apache2
         state: restarted
