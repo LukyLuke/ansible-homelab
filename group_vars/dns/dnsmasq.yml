@@ -14,6 +14,8 @@ dnsmasq_addresses:
     address: "192.168.88.7"
   - domain: cloud.ranta.ch
     address: "192.168.88.7"
+  - domain: spam.ranta.ch
+    address: "5.226.149.151"
   - domain: ansible.ranta.local
     address: "192.168.88.7"
 
