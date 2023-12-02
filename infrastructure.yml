@@ -21,7 +21,7 @@
   tasks:
     - name: Remove other webservers
       ansible.builtin.apt:
-        state: removed
+        state: absent
         update_cache: true
         pkg:
           - apache2
@@ -80,6 +80,9 @@
   become: true
   gather_facts: true
   tasks:
+    - name: Cady trust to install cerificates
+      ansible.builtin.shell: sudo HOME=~caddy caddy trust
+
     - name: Enable Caddy
       ansible.builtin.service:
         name: caddy.servive
