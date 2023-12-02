@@ -86,6 +86,6 @@
 
     - name: Enable Caddy
       ansible.builtin.service:
-        name: caddy.servive
+        name: caddy.service
         enabled: true
         state: started
