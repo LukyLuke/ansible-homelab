@@ -14,6 +14,19 @@
   roles:
     - role: robertdebock.dnsmasq
 
+- name: Cleanup Apache on proxy
+  hosts: dns
+  become: true
+  gather_facts: true
+  tasks:
+    - name: Remove other webservers
+      ansible.builtin.apt:
+        state: removed
+        update_cache: true
+        pkg:
+          - apache2
+          - php
+
 - name: Caddy Web-Proxy
   hosts: dns
   become: true
@@ -62,3 +75,17 @@
           }
         }
 
+- name: Start Caddy
+  hosts: dns
+  become: true
+  gather_facts: true
+  tasks:
+    - name: Cady trust to install cerificates
+      ansible.builtin.shell: |
+      sudo HOME=~caddy caddy trust
+
+    - name: Enable Caddy
+      ansible.builtin.service:
+        name: caddy.servive
+        enabled: true
+        state: started
