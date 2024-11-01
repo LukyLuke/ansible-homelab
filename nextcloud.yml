@@ -23,6 +23,7 @@
           - graphviz
           - curl
           - php
+          - php-apcu
           - php-curl
           - php-gd
           - php-imagick

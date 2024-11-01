@@ -14,9 +14,11 @@ dnsmasq_addresses:
     address: "192.168.88.7"
   - domain: cloud.ranta.ch
     address: "192.168.88.7"
-  - domain: spam.ranta.ch
-    address: "5.226.149.151"
   - domain: ansible.ranta.local
+    address: "192.168.88.7"
+  - domain: home.ranta.local
+    address: "192.168.88.7"
+  - domain: sound.ranta.local
     address: "192.168.88.7"
 
   - domain: lab.ranta.local
@@ -25,6 +27,10 @@ dnsmasq_addresses:
     address: "192.168.88.6"
   - domain: proxy.ranta.local
     address: "192.168.88.7"
+  - domain: vm.sound.ranta.local
+    address: "192.168.88.8"
+  - domain: vm.home.ranta.local
+    address: "192.168.88.9"
   - domain: vm.cloud.ranta.ch
     address: "192.168.88.10"
   - domain: kali.ranta.local
