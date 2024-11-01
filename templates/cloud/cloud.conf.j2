@@ -11,7 +11,7 @@
 	php_value post_max_size 4G
 	php_value max_input_time 3600
 	php_value max_execution_time 3600
-	php_value opcache.interned_strings_buffer 32
+	php_admin_value opcache.interned_strings_buffer 32
 
 	<Directory {{ nextcloud_directory }}/>
 		Require all granted
