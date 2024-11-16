@@ -3,6 +3,6 @@ Description=Nextcloud cron.php job
 
 [Service]
 User=www-data
-ExecCondition=php -f {{ nextcloud_directory }}/occ status -e
-ExecStart=/usr/bin/php -f {{ nextcloud_directory }}/cron.php
+ExecCondition=php --define apc.enable_cli=1 -f {{ nextcloud_directory }}/occ status -e
+ExecStart=/usr/bin/php --define apc.enable_cli=1 -f {{ nextcloud_directory }}/cron.php
 KillMode=process
