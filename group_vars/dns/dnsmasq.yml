@@ -18,8 +18,6 @@ dnsmasq_addresses:
     address: "192.168.88.7"
   - domain: home.ranta.local
     address: "192.168.88.7"
-  - domain: sound.ranta.local
-    address: "192.168.88.7"
 
   - domain: lab.ranta.local
     address: "192.168.88.5"
@@ -36,5 +34,9 @@ dnsmasq_addresses:
   - domain: kali.ranta.local
     address: "192.168.88.11"
   - domain: nas.ranta.local
+    address: "192.168.88.250"
+  - domain: k1.ranta.local
+    address: "192.168.88.251"
+  - domain: zigbee.ranta.local
     address: "192.168.88.254"
 
