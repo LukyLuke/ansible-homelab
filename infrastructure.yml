@@ -75,6 +75,13 @@
             header_down Strict-Transport-Security "max-age=31536000; includeSubdomains;"
           }
         }
+        home.ranta.ch,
+        home.ranta.local {
+          tls internal
+          reverse_proxy http://192.168.88.9:8123 {
+            header_down Strict-Transport-Security "max-age=31536000; includeSubdomains;"
+          }
+        }
 
 - name: Start Caddy
   hosts: dns

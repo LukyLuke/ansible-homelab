@@ -18,6 +18,8 @@ dnsmasq_addresses:
     address: "192.168.88.7"
   - domain: home.ranta.local
     address: "192.168.88.7"
+  - domain: home.ranta.ch
+    address: "192.168.88.7"
 
   - domain: lab.ranta.local
     address: "192.168.88.5"
