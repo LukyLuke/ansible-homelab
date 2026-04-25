@@ -77,8 +77,19 @@
         }
         home.ranta.ch,
         home.ranta.local {
-          tls internal
           reverse_proxy http://192.168.88.9:8123 {
+            header_down Strict-Transport-Security "max-age=31536000; includeSubdomains;"
+          }
+        }
+        ollama.ranta.ch,
+        ollama.ranta.local {
+          reverse_proxy http://192.168.88.252:11434 {
+            header_down Strict-Transport-Security "max-age=31536000; includeSubdomains;"
+          }
+        }
+        vllm.ranta.ch,
+        vllm.ranta.local {
+          reverse_proxy http://192.168.88.252:11535 {
             header_down Strict-Transport-Security "max-age=31536000; includeSubdomains;"
           }
         }
