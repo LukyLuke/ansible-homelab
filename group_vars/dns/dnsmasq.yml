@@ -43,6 +43,8 @@ dnsmasq_addresses:
     address: "192.168.88.10"
   - domain: kali.ranta.local
     address: "192.168.88.11"
+  - domain: jump.ranta.local
+    address: "192.168.88.12"
   - domain: nas.ranta.local
     address: "192.168.88.250"
   - domain: k1.ranta.local
